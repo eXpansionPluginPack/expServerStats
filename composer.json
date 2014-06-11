@@ -1,0 +1,10 @@
+{
+    "name": "expansion/web-statistics",
+    "type": "project",
+    "require": {
+        "php": ">=5.3",
+        "oliverde8/oweb-framework": "dev-master"
+    },
+
+    "minimum-stability": "dev"
+}
