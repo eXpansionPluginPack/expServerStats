@@ -1,6 +1,7 @@
 <?php
 /**
  * @author       Oliver de Cramer (oliverde8 at gmail.com)
+ * @author	 Petri Järvisalo  (petri.jarvisalo at gmail.com)
  * @copyright    GNU GENERAL PUBLIC LICENSE
  *                     Version 3, 29 June 2007
  *
@@ -21,82 +22,74 @@
  */
 $this->InitLanguageFile();
 ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><?php $this->l('eXpansion Statistics') ?></title>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title><?php $this->l('eXpansion Statistics') ?></title>
 
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
+        <link rel="stylesheet" href="css/main.css" />
+        <link rel="stylesheet" href="css/uikit.min.css" />
+        <link rel="stylesheet" href="css/uikit.gradient.min.css" />
 
-    <script>
-
-    </script>
-
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-
-    <?php
-
-    $this->addHeader('css.css', \OWeb\manage\Headers::css);
-    $this->addHeader('js.js', \OWeb\manage\Headers::javascript);
-
-    ?>
-
-</head>
-
-<body>
-
-
-<!-- Le Header -->
-<div id="header">
-
-
-</div>
-
-<?php
-$link_fr = $this->CurrentUrl()->addParam('lang', 'fr');
-$link_eng = $this->CurrentUrl()->addParam('lang', 'eng');
-
-$img_fr = OWEB_HTML_URL_IMG . '/flags/fr.png';
-$img_eng = OWEB_HTML_URL_IMG . '/flags/gb.png';
-?>
-
-<!-- Le Menu -->
-<div id="menu">
-    <div>
-        <div class="lang">
-            <div>
-                <a href="<?php echo $link_fr . '"><img src="' . $img_fr; ?>" alt="fr"></a>
-                <a href="<?php echo $link_eng . '"><img src="' . $img_eng; ?>" alt="eng"></a>
-            </div>
-        </div>
-        <ul class="menu">
-
-    </div>
-</div>
-
-
-<!-- Le Contenu -->
-<div id="contenuFull">
-    <div id="contenuFullJS">
+        <script src="js/uikit.min.js"></script>
 
         <?php
-        $this->display();
+        $this->addHeader('css.css', \OWeb\manage\Headers::css);
+        $this->addHeader('js.js', \OWeb\manage\Headers::javascript);
         ?>
 
-    </div>
-</div>
-<!-- Fin du Contenu -->
+    </head>
 
-<div id="foot">
-    <div>
-        <p class="generated">Generaterd in <?php echo \OWeb\OWeb::getInstance()->get_stringRuntTime(); ?> Seconds</p>
+    <body>
+        <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
 
-        <p class="powered">
-            Powered by OWeb <?= OWEB_VERSION ?>
-        </p>
-    </div>
-</div>
+            <nav class="uk-navbar uk-margin-large-bottom">
+                <a class="uk-navbar-brand uk-hidden-small" href="layouts_frontpage.html"> 
+                    Server Stats
+                </a>
+                <ul class="uk-navbar-nav uk-hidden-small">
+                    <li class="uk-active">
+                        <a href="?page=home">Overview</a>
+                    </li>
+                    <li>
+                        <a href="?page=rankings">Rankings</a>
+                    </li>
+                    <li>
+                        <a href="#">Overview</a>
+                    </li>
+                    <li>
+                        <a href="#">Overview</a>
+                    </li>
+                    <li>
+                        <a href="#">Overview</a>
+                    </li>
+                    <li>
+                        <a href="login.html">Login</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- main -->
+            <div class="uk-grid" data-uk-grid-margin>
 
-</body>
+                <?php
+                $this->display();
+                ?>
+
+
+
+            </div>
+
+            <!-- Footer -->
+            <div class="uk-grid footer small" data-uk-grid-margin>
+                <div class="uk-width-1-2 ">
+                    &nbsp;
+                </div>
+                <div class="uk-width-1-2 right">
+                    <p>Powered by OWeb <?= OWEB_VERSION ?></p>                  
+                </div>
+            </div>
+
+    </body>
 </html>

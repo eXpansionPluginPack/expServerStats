@@ -3,8 +3,9 @@
     "type": "project",
     "require": {
         "php": ">=5.3",
-        "oliverde8/oweb-framework": "dev-master"
+        "oliverde8/oweb-framework": "dev-master",
+        "maniaplanet/dedicated-server-api": "~4",
+        "ghunti/highcharts-php": "~3.0"
     },
-
     "minimum-stability": "dev"
 }

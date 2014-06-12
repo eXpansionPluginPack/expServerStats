@@ -31,3 +31,4 @@ com_crashlytics_export_strings.xml
 config.ini
 
 vendor/*
+/nbproject/private/

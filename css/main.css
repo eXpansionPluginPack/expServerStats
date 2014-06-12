@@ -1,0 +1,44 @@
+/* 
+    Author     : reaby
+*/
+
+
+.footer {
+    border-top: 1px solid #ddd;
+}
+
+.right {
+    text-align: right;
+}
+
+.small {
+    font-size: small;
+}
+
+#mainPage {
+    border-left: 1px solid #ddd;
+}
+.side-nav ul {
+    margin: 0;
+    padding: 0;
+}
+.side-nav li {
+    list-style-type: none;  
+    margin: 0;
+    padding: 0;
+}
+
+.side-nav li a {
+    font-family: "";
+    padding: 0.25em 1em;
+    display: block;
+    color: #888;
+    text-decoration: none;
+}
+
+.side-nav li a:hover {
+    display: block;
+    color: #444;
+    background: #eee;
+    text-decoration: none;
+}

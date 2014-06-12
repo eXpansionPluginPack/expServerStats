@@ -18,10 +18,11 @@ define('OWEB_DIR_VIEWS', 'src/views');
 
 
 require_once 'vendor/oliverde8/oweb-framework/OWeb/OWeb.php';
+require_once 'vendor/autoload.php';
 if (!isset($_SERVER['REMOTE_ADDR']))
     $_SERVER['REMOTE_ADDR'] = "";
 
-$Oweb = new OWeb\Oweb($_GET, $_POST, $_FILES, $_COOKIE, $_SERVER, $_SERVER['REMOTE_ADDR']);
+$Oweb = new OWeb\OWeb($_GET, $_POST, $_FILES, $_COOKIE, $_SERVER, $_SERVER['REMOTE_ADDR']);
 
 $Oweb->registerNameSpace('Controller', 'src/controllers');
 $Oweb->registerNameSpace('View', 'src/views');

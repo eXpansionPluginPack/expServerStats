@@ -25,7 +25,7 @@ namespace Page;
 
 use OWeb\types\Controller;
 
-class home extends Controller {
+class rankings extends Controller {
 
     public function init()
     {
