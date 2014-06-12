@@ -3,7 +3,7 @@
 define('OWEB_DIR_MAIN', 'vendor/oliverde8/oweb-framework/OWeb/');
 define('OWEB_CONFIG', 'config.ini');
 
-define('OWEB_DEFAULT_PAGE', 'Overview\home');
+define('OWEB_DEFAULT_PAGE', 'home');
 define('OWEB_DIR_PAGES', "pages");
 define('OWEB_DIR_FAPI', "fapi");
 

@@ -49,13 +49,17 @@ $this->InitLanguageFile();
                 </a>
                 <ul class="uk-navbar-nav uk-hidden-small">
                     <li class="uk-active">
-                        <a href="?page=home">Overview</a>
+                        <a href="<?php echo $this->url(array('page'=>'home')) ?>">
+                            <?php echo $this->l('Overview') ?>
+                        </a>
                     </li>
                     <li>
-                        <a href="?page=rankings">Rankings</a>
+                        <a href="<?php echo $this->url(array('page'=>'rankings')) ?>">
+                            <?php echo $this->l('Rankings'); ?>
+                        </a>
                     </li>
 		    <li>
-                        <a href="#">Tournaments</a>
+                        <a href="#"><?php echo $this->l('Tournaments'); ?></a>
                     </li>                   
                 </ul>
             </nav>
