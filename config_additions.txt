@@ -1,5 +1,5 @@
 [Extension\Maniaplanet\ServerConnection]
-host = "127.0.0.1"
-port = 5000
-user = SuperAdmin
-password = SuperAdmin
+host[0] = "127.0.0.1"
+port[0] = 5000
+user[0] = SuperAdmin
+password[0] = SuperAdmin

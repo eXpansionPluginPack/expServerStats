@@ -28,16 +28,14 @@ $this->InitLanguageFile();
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title><?php $this->l('eXpansion Statistics') ?></title>
 
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js"></script>
-        <link rel="stylesheet" href="css/main.css" />
-        <link rel="stylesheet" href="css/uikit.min.css" />
-        <link rel="stylesheet" href="css/uikit.gradient.min.css" />
-
-        <script src="js/uikit.min.js"></script>
-
 	<?php
-	$this->addHeader('css.css', \OWeb\manage\Headers::css);
-	$this->addHeader('js.js', \OWeb\manage\Headers::javascript);
+	$this->addHeader('main.css', \OWeb\manage\Headers::css);
+	$this->addHeader('uikit.min.css', \OWeb\manage\Headers::css);
+	$this->addHeader('uikit.gradient.min.css', \OWeb\manage\Headers::css);
+
+	$this->addHeader('http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js', \OWeb\manage\Headers::javascript);
+
+        $this->headers();
 	?>
 
     </head>
