@@ -35,10 +35,10 @@ $this->InitLanguageFile();
 
         <script src="js/uikit.min.js"></script>
 
-        <?php
-        $this->addHeader('css.css', \OWeb\manage\Headers::css);
-        $this->addHeader('js.js', \OWeb\manage\Headers::javascript);
-        ?>
+	<?php
+	$this->addHeader('css.css', \OWeb\manage\Headers::css);
+	$this->addHeader('js.js', \OWeb\manage\Headers::javascript);
+	?>
 
     </head>
 
@@ -56,26 +56,17 @@ $this->InitLanguageFile();
                     <li>
                         <a href="?page=rankings">Rankings</a>
                     </li>
-                    <li>
-                        <a href="#">Overview</a>
-                    </li>
-                    <li>
-                        <a href="#">Overview</a>
-                    </li>
-                    <li>
-                        <a href="#">Overview</a>
-                    </li>
-                    <li>
-                        <a href="login.html">Login</a>
-                    </li>
+		    <li>
+                        <a href="#">Tournaments</a>
+                    </li>                   
                 </ul>
             </nav>
             <!-- main -->
             <div class="uk-grid" data-uk-grid-margin>
 
-                <?php
-                $this->display();
-                ?>
+		<?php
+		$this->display();
+		?>
 
 
 

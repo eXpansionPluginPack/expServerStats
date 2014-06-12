@@ -18,7 +18,11 @@ define('OWEB_DIR_VIEWS', 'src/views');
 
 
 require_once 'vendor/oliverde8/oweb-framework/OWeb/OWeb.php';
-require_once 'vendor/autoload.php';
+require_once 'classes/tmfcolorparser.inc.php';
+$loader = require 'vendor/autoload.php';
+//$loader->add('OWebExt', 'OWebExt/');
+
+
 if (!isset($_SERVER['REMOTE_ADDR']))
     $_SERVER['REMOTE_ADDR'] = "";
 
@@ -29,8 +33,7 @@ $Oweb->registerNameSpace('View', 'src/views');
 $Oweb->registerNameSpace('Model', 'src/models');
 $Oweb->registerNameSpace('Extension', 'src/extensions');
 $Oweb->registerNameSpace('Page', 'src/pages');
-
 $Oweb->init();
-$Oweb->display();
 
+$Oweb->display();
 ?>

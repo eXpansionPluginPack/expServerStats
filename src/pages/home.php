@@ -1,6 +1,9 @@
 <?php
+
 /**
  * @author      Oliver de Cramer (oliverde8 at gmail.com)
+ * @author      Petri Järvisalo (petri.jarvisalo@gmail.com)
+ * 
  * @copyright    GNU GENERAL PUBLIC LICENSE
  *                     Version 3, 29 June 2007
  *
@@ -22,18 +25,38 @@
 
 namespace Page;
 
-
 use OWeb\types\Controller;
 
 class home extends Controller {
 
-    public function init()
-    {
+    /** @var Maniaplanet\DedicatedServer\Connection */
+    public $connection = null;
 
+    /** @var \Extension\Maniaplanet\ServerConnection */
+    public $server = null;
+
+    public function init() {
+	$this->connection = $this->getConnection();
     }
 
-    public function onDisplay()
-    {
-
+    public function onDisplay() {
+	$this->view->serverOptions = $this->server->server;
+	$this->view->players = $this->server->players;
+	$this->view->specatators = $this->server->spectators;
+	$this->view->maps = $this->server->maps;
+	$this->view->currentMap = $this->server->currentMap;
+	
     }
+
+    /**
+     * 
+     * @return \Maniaplanet\DedicatedServer\Connection
+     */
+    private function getConnection() {
+
+	$this->server = \OWeb\manage\Extensions::getInstance()->getExtension('Maniaplanet\ServerConnection');
+
+	return $this->server->getConnection();
+    }
+
 }
