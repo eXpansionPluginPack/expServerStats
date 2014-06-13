@@ -1,7 +1,8 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
+        "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
     ],
     "hash": "0fb245749ed923b37d2c81b3b4a1cad5",
     "packages": [
@@ -100,12 +101,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/oliverde8/OWeb-Framework.git",
-                "reference": "3b612683778416fd1d58ff6709c024a4a89d4ef6"
+                "reference": "13991e5c18bfbc45b13a03d1ea60c3b58059b9b2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oliverde8/OWeb-Framework/zipball/3b612683778416fd1d58ff6709c024a4a89d4ef6",
-                "reference": "3b612683778416fd1d58ff6709c024a4a89d4ef6",
+                "url": "https://api.github.com/repos/oliverde8/OWeb-Framework/zipball/13991e5c18bfbc45b13a03d1ea60c3b58059b9b2",
+                "reference": "13991e5c18bfbc45b13a03d1ea60c3b58059b9b2",
                 "shasum": ""
             },
             "require": {
@@ -120,7 +121,7 @@
                 }
             ],
             "description": "A simple yet powerful framework",
-            "time": "2014-06-11 20:14:33"
+            "time": "2014-06-12 20:10:21"
         }
     ],
     "packages-dev": [

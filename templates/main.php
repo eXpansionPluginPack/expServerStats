@@ -34,8 +34,10 @@ $this->InitLanguageFile();
 	$this->addHeader('uikit.gradient.min.css', \OWeb\manage\Headers::css);
 
 	$this->addHeader('http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js', \OWeb\manage\Headers::javascript);
-
-        $this->headers();
+	$this->addHeader('styleParser.js', \OWeb\manage\Headers::javascript);
+	$this->addHeader('mainScript.js', \OWeb\manage\Headers::javascript);
+	
+	$this->headers();
 	?>
 
     </head>
@@ -44,18 +46,18 @@ $this->InitLanguageFile();
         <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
 
             <nav class="uk-navbar uk-margin-large-bottom">
-                <a class="uk-navbar-brand uk-hidden-small" href="layouts_frontpage.html"> 
-                    Server Stats
+                <a class="uk-navbar-brand uk-hidden-small" href="<?php echo $this->url(array('page' => 'home')) ?>"> 
+		    <?php echo $this->l('Server Stats') ?>
                 </a>
                 <ul class="uk-navbar-nav uk-hidden-small">
                     <li class="uk-active">
-                        <a href="<?php echo $this->url(array('page'=>'home')) ?>">
-                            <?php echo $this->l('Overview') ?>
+                        <a href="<?php echo $this->url(array('page' => 'home')) ?>">
+			    <?php echo $this->l('Overview') ?>
                         </a>
                     </li>
                     <li>
-                        <a href="<?php echo $this->url(array('page'=>'rankings')) ?>">
-                            <?php echo $this->l('Rankings'); ?>
+                        <a href="<?php echo $this->url(array('page' => 'rankings')) ?>">
+			    <?php echo $this->l('Rankings'); ?>
                         </a>
                     </li>
 		    <li>

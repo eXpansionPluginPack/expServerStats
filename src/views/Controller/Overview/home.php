@@ -1,14 +1,23 @@
+<div class="uk-width-2-10" id='tabmenu'>
+    <!-- tabmenu -->
+    <ul class="side-nav">
+        <li class="side-active"><a href="#">Server</a></li>
+        <li><a href="#">Players</a></li>
+        <li><a href="#">Maps</a></li>
 
-<?php  foreach($this->serverIds as $id) : ?>
-    <!-- <div class="uk-container-"> -->
-    <?php
+    </ul>
 
-        \OWeb\manage\SubViews::getInstance()->getSubView('\Controller\Widgets\Server\Display')
-            ->addParams('id', $id)
-            ->display();
+</div>
+<div class="uk-width-8-10">
+    <?php foreach ($this->serverIds as $id) : ?>
 
-    ?>
-    <!-- </div> -->
-<?php endforeach;
+	<?php
+	\OWeb\manage\SubViews::getInstance()->getSubView('\Controller\Widgets\Server\Display')
+		->addParams('id', $id)
+		->display();
+	?>
 
+    <?php endforeach; ?>
+
+</div>
 

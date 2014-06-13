@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @var \Controller\Widgets\Server\Display $this
  */
@@ -14,58 +13,34 @@ $headersOnReady = \OWeb\utils\js\jquery\HeaderOnReadyManager::getInstance();
  * @var \OWeb\manage\Headers $headers
  */
 $headers = \OWeb\manage\Headers::getInstance();
-$headers->addJs('serverInfoFetcher.js');
+$headers->addJs('styleParser.js');
+$headers->addJs('serverOverView.js');
+
 
 $code = '
-console.log("Test");
-serverInfoFetch('.$this->id.');
+serverOverview(' . $this->id . ');
 ';
-$headersOnReady->add($code);
 
+$headersOnReady->add($code);
 ?>
 
-<div class="uk-width-2-10" id='tabmenu'>
-    <!-- tabmenu -->
-    <ul class="side-nav">
-        <li class="side-active"><a href="#">Server</a></li>
-        <li><a href="#">Players</a></li>
-        <li><a href="#">Maps</a></li>
+<div class="uk-panel uk-panel-box" id="overview-server-<?php echo $this->id; ?>" > 
+    <div class="uk-panel-title  serverName ">
+	(server offline)
+    </div>
+    <div class="uk-panel-badge ladder"></div>
+	<table>
+	    <tbody>	   
+		<tr>	
+		    <td colspan="3" class="currentMap"></td>
+		</tr>   	
+		<tr>
+		    <td class="uk-width-1-3 players"></td>
+		    <td class="uk-width-1-3 spectators"></td>
+		    <td class="uk-width-1-3 mapCount"></td>		
+		</tr>
 
-    </ul>
-
-</div>
-
-<div class="uk-width-8-10" id="overview-server-<?php echo $this->id; ?>" >
-
-    <table class="uk-table uk-table-hover uk-table-striped uk-table-condensed">
-        <tbody>
-        <tr>
-            <td class="uk-width-3-10 ">Server Name</td>
-            <td class="uk-width-7-10 server-name"><?php echo $this->toHTML($this->serverOptions->name); ?></td>
-        </tr>
-        <tr>
-            <td class="uk-width-3-10 ">Ladder Limits</td>
-            <td class="uk-width-7-10"><?php echo ($this->serverOptions->ladderServerLimitMin/1000) . " - ". ($this->serverOptions->ladderServerLimitMax/1000)."K"; ?></td>
-        </tr>
-        <tr>
-            <td class="">Current Map</td>
-            <td class=""><?php echo $this->toHTML($mapInfo); ?></td>
-        </tr>
-        <tr>
-            <td class="">Max Players</td>
-            <td class=""><?php echo count($this->players) . " / " . $this->serverOptions->currentMaxPlayers; ?></td>
-        </tr>
-        <tr>
-            <td class="">Max Spectators</td>
-            <td class=""><?php echo count($this->spectators) . " / " . $this->serverOptions->currentMaxSpectators; ?></td>
-        </tr>
-        <tr>
-            <td class="">Maps Total</td>
-            <td class=""><?php echo count($this->maps); ?></td>
-        </tr>
-
-        </tbody>
-
-    </table>
-
+	    </tbody>
+	</table>
+    </div>
 </div>

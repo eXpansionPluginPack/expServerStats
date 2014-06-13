@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author      Oliver de Cramer (oliverde8 at gmail.com)
  * @copyright    GNU GENERAL PUBLIC LICENSE
@@ -22,10 +23,10 @@
 
 namespace Extension\Maniaplanet;
 
-
 use OWeb\types\Extension;
 
-class ColorParser extends Extension{
+class ColorParser extends Extension
+{
 
     /**
      * @var \TMFColorParser
@@ -34,11 +35,13 @@ class ColorParser extends Extension{
 
     protected function init()
     {
-        $this->parser = new \TMFColorParser();
-        $this->addAlias('toHTML', 'toHTML');
+	$this->parser = new \TMFColorParser();
+	$this->addAlias('parseColors', 'toHTML');
     }
 
-    public function toHTML($string){
-        return $this->parser->toHTML($string);
+    public function toHTML($string)
+    {
+	return $this->parser->toHTML($string);
     }
+
 }
