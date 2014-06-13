@@ -36,7 +36,7 @@ $this->InitLanguageFile();
 	$this->addHeader('http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js', \OWeb\manage\Headers::javascript);
 	$this->addHeader('styleParser.js', \OWeb\manage\Headers::javascript);
 	$this->addHeader('mainScript.js', \OWeb\manage\Headers::javascript);
-	
+
 	$this->headers();
 	?>
 
@@ -46,7 +46,7 @@ $this->InitLanguageFile();
         <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
 
             <nav class="uk-navbar uk-margin-large-bottom">
-                <a class="uk-navbar-brand uk-hidden-small" href="<?php echo $this->url(array('page' => 'home')) ?>"> 
+                <a class="uk-navbar-brand uk-hidden-small" href="<?php echo $this->url(array('page' => 'home')) ?>">
 		    <?php echo $this->l('Server Stats') ?>
                 </a>
                 <ul class="uk-navbar-nav uk-hidden-small">
@@ -62,11 +62,11 @@ $this->InitLanguageFile();
                     </li>
 		    <li>
                         <a href="#"><?php echo $this->l('Tournaments'); ?></a>
-                    </li>                   
+                    </li>
                 </ul>
             </nav>
             <!-- main -->
-            <div class="uk-grid" data-uk-grid-margin>
+            <div class="uk-grid uk-margin-large-bottom" data-uk-grid-margin>
 
 		<?php
 		$this->display();
@@ -77,14 +77,16 @@ $this->InitLanguageFile();
             </div>
 
             <!-- Footer -->
-            <div class="uk-grid footer small" data-uk-grid-margin>
-                <div class="uk-width-1-2 ">
-                    &nbsp;
-                </div>
-                <div class="uk-width-1-2 right">
-                    <p>Powered by OWeb <?= OWEB_VERSION ?></p>                  
+            <div class="uk-container uk-container-center uk-margin-top  footer small" data-uk-grid-margin>
+                <div class="uk-grid" data-uk-grid-margin>
+                    <div class="uk-width-4-5 ">
+                        &nbsp;
+                    </div>
+                    <div class="uk-width-1-5 right">
+                        <p>Powered by OWeb <?= OWEB_VERSION ?></p>
+                    </div>
                 </div>
             </div>
-
+        </div>
     </body>
 </html>

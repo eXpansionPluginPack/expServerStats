@@ -29,18 +29,17 @@ $headersOnReady->add($code);
 	(server offline)
     </div>
     <div class="uk-panel-badge ladder"></div>
-	<table>
-	    <tbody>	   
-		<tr>	
-		    <td colspan="3" class="currentMap"></td>
-		</tr>   	
-		<tr>
-		    <td class="uk-width-1-3 players"></td>
-		    <td class="uk-width-1-3 spectators"></td>
-		    <td class="uk-width-1-3 mapCount"></td>		
-		</tr>
+    <table>
+        <tbody>
+            <tr>
+                <td colspan="3" class="currentMap"></td>
+            </tr>
+            <tr>
+                <td class="uk-width-1-3 players"></td>
+                <td class="uk-width-1-3 spectators"></td>
+                <td class="uk-width-1-3 mapCount"></td>
+            </tr>
 
-	    </tbody>
-	</table>
-    </div>
+        </tbody>
+    </table>
 </div>
