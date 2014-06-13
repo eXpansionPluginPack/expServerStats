@@ -2,29 +2,22 @@
 
 namespace Extension\Maniaplanet;
 
+use Model\Server\Data;
+
 class ServerConnection extends \OWeb\types\extension
 {
 
     /** @var \Maniaplanet\DedicatedServer\Connection[] */
     private $connections = array();
 
-    /** @var bool[] */
-    public $isConnected = array();
+    /** @var Data[]  */
+    private $servers = array();
 
-    /** @var \Maniaplanet\DedicatedServer\Structures\ServerOptions[] */
-    public $servers = array();
 
-    /** @var \Maniaplanet\DedicatedServer\Structures\Player[][]; */
-    public $players = array();
-
-    /** @var \Maniaplanet\DedicatedServer\Structures\Player[][]; */
-    public $spectators = array();
-
-    /** @var \Maniaplanet\DedicatedServer\Structures\Map[][]; */
-    public $maps = array();
-
-    /** @var \Maniaplanet\DedicatedServer\Structures\Map[]; */
-    public $currentMaps = array();
+    public function __construct()
+    {
+        $this->addDependance('core\cache\Caching');
+    }
 
     protected function init()
     {
@@ -46,18 +39,26 @@ class ServerConnection extends \OWeb\types\extension
 
 	if ($serverId === null && empty($this->servers)) {
 	    foreach ($config->host as $id => $ip) {
-		if (isset($config->port[$id]) && isset($config->user[$id]) && isset($config->password[$id])) {
-		    $this->getConnection($id, $ip, $config->port[$id], $config->user[$id], $config->password[$id]);
-		}
+                $this->servers[$id] = $this->ext_core_cache_Caching->createCacheElement('serverInfo.'.$id, array($this, 'getServerData'), array($id), $config->cacheTimeout);
 	    }
 	} else {
-	    $id = $serverId;
-	    if (isset($config->host[$id]) && isset($config->port[$id]) && isset($config->user[$id]) && isset($config->password[$id])) {
-		$this->getConnection($id, $config->host[$id], $config->port[$id], $config->user[$id], $config->password[$id]);
-	    }
+            $this->servers[$serverId] =  $this->ext_core_cache_Caching->createCacheElement('serverInfo.'.$serverId, array($this, 'getServerData'), array($serverId), $config->cacheTimeout);
 	}
 
 	return $this->connections;
+    }
+
+    public function getServerData($id)
+    {
+
+        $settingsManager = \OWeb\manage\Settings::getInstance();
+        $config = (object) $settingsManager->getSetting(get_class());
+
+        if (isset($config->host[$id]) && isset($config->port[$id]) && isset($config->user[$id]) && isset($config->password[$id])) {
+            $this->getConnection($id, $config->host[$id], $config->port[$id], $config->user[$id], $config->password[$id]);
+        }
+
+        return $this->servers[$id];
     }
 
     /**
@@ -76,8 +77,10 @@ class ServerConnection extends \OWeb\types\extension
 	    try {
 		$this->connections[$id] = \Maniaplanet\DedicatedServer\Connection::factory($host, $port, 1, $user, $password);
 		$this->syncData($id, $this->connections[$id]);
-		$this->isConnected[$id] = true;
+                $this->servers[$id]->isConnected = true;
 	    } catch (\Exception $ex) {
+                $this->servers[$id] = new Data();
+                $this->servers[$id]->isConnected = false;
 		$this->isConnected[$id] = false;
 	    }
 	}
@@ -85,20 +88,25 @@ class ServerConnection extends \OWeb\types\extension
 
     private function syncData($id, \Maniaplanet\DedicatedServer\Connection $connection)
     {
-	$this->servers[$id] = \Maniaplanet\DedicatedServer\Structures\ServerOptions::fromArray($connection->getServerOptions());
-	$this->maps[$id] = \Maniaplanet\DedicatedServer\Structures\Map::fromArrayOfArray($connection->getMapList(-1, 0));
-	$this->currentMap[$id] = $connection->getCurrentMapInfo();
+        $server = new Data();
+
+        $server->server = \Maniaplanet\DedicatedServer\Structures\ServerOptions::fromArray($connection->getServerOptions());
+
+        $server->maps = \Maniaplanet\DedicatedServer\Structures\Map::fromArrayOfArray($connection->getMapList(-1, 0));
+
+        $server->currentMap = $connection->getCurrentMapInfo();
+
 	$data = $connection->getPlayerList(-1, 0);
-	$this->players[$id] = array();
-	$this->spectators[$id] = array();
 
 	foreach ($data as $player) {
 	    if (!$player->spectator) {
-		$this->players[$id][$player->login] = $player;
+                $server->players[$player->login] = $player;
 	    } else {
-		$this->spectators[$id][$player->login] = $player;
+                $server->spectators[$player->login] = $player;
 	    }
 	}
+
+        $this->servers[$id] = $server;
     }
 
     public function getServerDataAction()
@@ -107,13 +115,7 @@ class ServerConnection extends \OWeb\types\extension
 
 	$this->getData($id);
 
-	$results = array();
-	$results['online'] = $this->isConnected[$id];
-	$results['server'] = $this->servers[$id];
-	$results['maps'] = $this->maps[$id];
-	$results['currentMap'] = $this->currentMap[$id];
-	$results['players'] = $this->players[$id];
-	$results['spectators'] = $this->spectators[$id];
+	$results = $this->servers[$id];
 
 	return $results;
     }
