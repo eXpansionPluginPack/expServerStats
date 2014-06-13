@@ -12,9 +12,10 @@
     <?php foreach ($this->serverIds as $id) : ?>
 
 	<?php
-	\OWeb\manage\SubViews::getInstance()->getSubView('\Controller\Widgets\Server\Display')
+        $this->loadWithAjax('Widgets\Server\Display&id='.$id, $this->timeout);
+	/*\OWeb\manage\SubViews::getInstance()->getSubView('\Controller\Widgets\Server\Display')
 		->addParams('id', $id)
-		->display();
+		->display();*/
 	?>
 
     <?php endforeach; ?>

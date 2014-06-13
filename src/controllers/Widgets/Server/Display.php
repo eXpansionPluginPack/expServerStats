@@ -23,13 +23,21 @@
 namespace Controller\Widgets\Server;
 
 
+use Extension\Maniaplanet\ServerConnection;
 use OWeb\types\Controller;
 
 class Display extends Controller{
 
+    /**
+     * @var ServerConnection
+     */
+    protected $dedi_ext;
+
     public function init()
     {
+        $this->addDependance('Maniaplanet\ServerConnection');
         $this->addDependance('Maniaplanet\ColorParser');
+        $this->dedi_ext = \OWeb\manage\Extensions::getInstance()->getExtension('Maniaplanet\ServerConnection');
     }
 
     public function setServerId($id){
@@ -39,6 +47,6 @@ class Display extends Controller{
     public function onDisplay()
     {
         $this->view->id = $this->getParam('id');
-
+        $this->view->data = $this->dedi_ext->getData($this->view->id);
     }
 }

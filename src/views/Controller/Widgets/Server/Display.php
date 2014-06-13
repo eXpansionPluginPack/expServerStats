@@ -1,43 +1,36 @@
 <?php
 /**
- * @var \Controller\Widgets\Server\Display $this
+ * @var Model\Server\Data $data
  */
-$this;
-
-/**
- * @var \OWeb\utils\js\jquery\HeaderOnReadyManager $headersOnReady
- */
-$headersOnReady = \OWeb\utils\js\jquery\HeaderOnReadyManager::getInstance();
-
-/**
- * @var \OWeb\manage\Headers $headers
- */
-$headers = \OWeb\manage\Headers::getInstance();
-$headers->addJs('styleParser.js');
-$headers->addJs('serverOverView.js');
+$data = $this->data;
 
 
-$code = '
-serverOverview(' . $this->id . ');
-';
-
-$headersOnReady->add($code);
 ?>
 
 <div class="uk-panel uk-panel-box" id="overview-server-<?php echo $this->id; ?>" > 
     <div class="uk-panel-title  serverName ">
-	(server offline)
+	<?php echo $this->parseColors($data->server->name) ?>
     </div>
-    <div class="uk-panel-badge ladder"></div>
+    <div class="uk-panel-badge ladder">
+        <?php echo ($data->server->ladderServerLimitMin / 1000) . " - " . ($data->server->ladderServerLimitMax / 1000) . "k"; ?>
+    </div>
     <table>
         <tbody>
             <tr>
-                <td colspan="3" class="currentMap"></td>
+                <td colspan="3" class="currentMap">
+                    <?php echo $this->parseColors($data->currentMap->name).' '.$this->l('by').' '.$this->parseColors($data->currentMap->author) ?>
+                </td>
             </tr>
             <tr>
-                <td class="uk-width-1-3 players"></td>
-                <td class="uk-width-1-3 spectators"></td>
-                <td class="uk-width-1-3 mapCount"></td>
+                <td class="uk-width-1-3 players">
+                    <?php echo count($data->players) .'/'.$data->server->currentMaxPlayers; ?>
+                </td>
+                <td class="uk-width-1-3 spectators">
+                    <?php echo count($data->spectators) .'/'.$data->server->currentMaxPlayers; ?>
+                </td>
+                <td class="uk-width-1-3 mapCount">
+                    <?php echo count($data->maps); ?>
+                </td>
             </tr>
 
         </tbody>

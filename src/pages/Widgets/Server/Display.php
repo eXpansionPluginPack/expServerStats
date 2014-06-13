@@ -1,9 +1,6 @@
 <?php
-
 /**
  * @author      Oliver de Cramer (oliverde8 at gmail.com)
- * @author      Petri Järvisalo (petri.jarvisalo@gmail.com)
- * 
  * @copyright    GNU GENERAL PUBLIC LICENSE
  *                     Version 3, 29 June 2007
  *
@@ -23,31 +20,11 @@
  *  along with this program.  If not, see {http://www.gnu.org/licenses/}.
  */
 
-namespace Controller\Overview;
+namespace Page\Widgets\Server;
 
-use Extension\Maniaplanet\ServerConnection;
-use OWeb\types\Controller;
 
-class home extends Controller {
 
-    /**
-     * @var ServerConnection
-     */
-    protected $dedi_ext;
+class Display extends \Controller\Widgets\Server\Display{
 
-    /** @var int[] */
-    public $servers = null;
-
-    public function init() {
-        $this->InitLanguageFile();
-	$this->addDependance('Maniaplanet\ServerConnection');
-	$this->addDependance('contentDisplay\ajaxContentLoader');
-        $this->dedi_ext = \OWeb\manage\Extensions::getInstance()->getExtension('Maniaplanet\ServerConnection');
-    }
-
-    public function onDisplay() {
-	$this->view->serverIds = $this->dedi_ext->getIdList();
-        $this->view->timeout = $this->dedi_ext->getTimeOut();
-    }
 
 }

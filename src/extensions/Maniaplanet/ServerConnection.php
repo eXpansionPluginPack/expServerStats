@@ -45,7 +45,7 @@ class ServerConnection extends \OWeb\types\extension
             $this->servers[$serverId] =  $this->ext_core_cache_Caching->createCacheElement('serverInfo.'.$serverId, array($this, 'getServerData'), array($serverId), $config->cacheTimeout);
 	}
 
-	return $this->connections;
+	return $this->servers[$serverId];
     }
 
     public function getServerData($id)
@@ -118,6 +118,12 @@ class ServerConnection extends \OWeb\types\extension
 	$results = $this->servers[$id];
 
 	return $results;
+    }
+
+    public function getTimeOut(){
+        $settingsManager = \OWeb\manage\Settings::getInstance();
+        $config = (object) $settingsManager->getSetting(get_class());
+        return $config->cacheTimeout;
     }
 
 }
