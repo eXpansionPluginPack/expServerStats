@@ -4,11 +4,13 @@
  */
 $data = $this->data;
 
-if ($this->type == \Controller\Widgets\Server\Players::type_player)
+if ($this->type == \Controller\Widgets\Server\Players::type_player) :
+    $list = $data->players;
     $type = $this->l('Players');
-else
+else :
+    $list = $data->spectators;
     $type = $this->l('Spectators');
-
+endif;
 ?>
 
 <h3>
@@ -24,14 +26,14 @@ else
         </th>
     </tr>
 
-    <?php if (!empty($data->players)) : ?>
-        <?php foreach ($data->players as $player) : ?>
+    <?php if (!empty($list)) : ?>
+        <?php foreach ($list as $player) : ?>
             <tr>
                 <td>
                     <?php echo $player->login; ?>
                 </td>
                 <td>
-                    <?php echo $this->parseColors($player->login); ?>
+                    <?php echo $this->parseColors($player->nickName); ?>
                 </td>
             </tr>
         <?php endforeach; ?>
