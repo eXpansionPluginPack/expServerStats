@@ -1,6 +1,12 @@
 <div class="uk-width-3-10">
     <ul class="uk-list uk-list-striped">
         <li>
+            <a href="<?php echo $this->url(array('page'=>'Overview\Server', 'id'=>$this->id)); ?>">
+                <i class="uk-icon-home"></i>
+                <?php echo $this->l('Overview') ?>
+            </a>
+        </li>
+        <li>
             <a href="#">
                 <i class="uk-icon-users"></i>
                 <?php echo $this->l('Player Rankings') ?>

@@ -81,11 +81,14 @@ $this->InitLanguageFile();
 
             <!-- Footer -->
             <div class="uk-container uk-container-center uk-margin-top  footer small" data-uk-grid-margin>
-                <div class="uk-grid" data-uk-grid-margin>
-                    <div class="uk-width-4-5 ">
-                        &nbsp;
+                <div class="uk-grid" data-uk-grid-margin data-uk-grid-match>
+                    <div class="uk-width-1-5 uk-margin-top">
+                        <p>reaby & oliverde8</p>
                     </div>
-                    <div class="uk-width-1-5 right">
+                    <div  class="uk-width-3-5 uk-margin-small-top">
+                        <img class="uk-align-center" style="height: 35px" src="http://files.oliver-decramer.com/data/maniaplanet/images/eXpansion/exp_small.png"/>
+                    </div>
+                    <div class="uk-width-1-5 uk-margin-top uk-text-right">
                         <p>Powered by OWeb <?= OWEB_VERSION ?></p>
                     </div>
                 </div>
