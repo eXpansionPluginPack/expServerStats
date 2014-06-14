@@ -20,12 +20,9 @@
  *  along with this program.  If not, see {http://www.gnu.org/licenses/}.
  */
 
-namespace Controller\Widgets\Server;
+namespace Page\Widgets\Server;
 
 
-use Extension\Maniaplanet\ServerConnection;
-use OWeb\types\Controller;
+class Maps extends \Controller\Widgets\Server\Maps{
 
-class Display extends BaseWidget{
-
-}
+} 

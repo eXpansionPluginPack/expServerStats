@@ -23,9 +23,6 @@
 namespace Controller\Widgets\Server;
 
 
-use Extension\Maniaplanet\ServerConnection;
-use OWeb\types\Controller;
+class Maps extends BaseWidget{
 
-class Display extends BaseWidget{
-
-}
+} 

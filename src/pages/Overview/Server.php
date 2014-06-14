@@ -20,12 +20,7 @@
  *  along with this program.  If not, see {http://www.gnu.org/licenses/}.
  */
 
-namespace Controller\Widgets\Server;
+namespace Page\Overview;
 
 
-use Extension\Maniaplanet\ServerConnection;
-use OWeb\types\Controller;
-
-class Display extends BaseWidget{
-
-}
+class Server extends \Controller\Overview\Server{}

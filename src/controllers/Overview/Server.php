@@ -20,12 +20,29 @@
  *  along with this program.  If not, see {http://www.gnu.org/licenses/}.
  */
 
-namespace Controller\Widgets\Server;
+namespace Controller\Overview;
 
 
-use Extension\Maniaplanet\ServerConnection;
 use OWeb\types\Controller;
 
-class Display extends BaseWidget{
+class Server extends Controller{
 
+    /**
+     * @var ServerConnection
+     */
+    protected $dedi_ext;
+
+    public function init()
+    {
+        $this->addDependance('Maniaplanet\ServerConnection');
+        $this->addDependance('Maniaplanet\ColorParser');
+        $this->addDependance('contentDisplay\ajaxContentLoader');
+        $this->dedi_ext = \OWeb\manage\Extensions::getInstance()->getExtension('Maniaplanet\ServerConnection');
+    }
+
+    public function onDisplay()
+    {
+        $this->view->id = $this->getParam('id');
+        $this->view->data = $this->dedi_ext->getData($this->view->id);
+    }
 }

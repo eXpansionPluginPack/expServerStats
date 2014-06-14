@@ -23,9 +23,17 @@
 namespace Controller\Widgets\Server;
 
 
-use Extension\Maniaplanet\ServerConnection;
-use OWeb\types\Controller;
+class Players extends BaseWidget{
 
-class Display extends BaseWidget{
+    const type_spec = 1;
+    const type_player = 2;
 
-}
+    public function onDisplay()
+    {
+        $type = $this->getParam('type');
+        if($type == null)
+            $type = self::type_player;
+        $this->view->type = $type;
+        parent::onDisplay();
+    }
+} 
