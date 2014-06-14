@@ -101,12 +101,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/oliverde8/OWeb-Framework.git",
-                "reference": "13991e5c18bfbc45b13a03d1ea60c3b58059b9b2"
+                "reference": "92afc7f0dd5a8f0216a54dc0b57ea9c25a6c8141"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/oliverde8/OWeb-Framework/zipball/13991e5c18bfbc45b13a03d1ea60c3b58059b9b2",
-                "reference": "13991e5c18bfbc45b13a03d1ea60c3b58059b9b2",
+                "url": "https://api.github.com/repos/oliverde8/OWeb-Framework/zipball/92afc7f0dd5a8f0216a54dc0b57ea9c25a6c8141",
+                "reference": "92afc7f0dd5a8f0216a54dc0b57ea9c25a6c8141",
                 "shasum": ""
             },
             "require": {
@@ -121,7 +121,7 @@
                 }
             ],
             "description": "A simple yet powerful framework",
-            "time": "2014-06-12 20:10:21"
+            "time": "2014-06-13 21:57:34"
         }
     ],
     "packages-dev": [
