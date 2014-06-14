@@ -42,3 +42,27 @@
     text-decoration: none;
 }
 
+.badge-online {
+    padding: 0 0.5em;
+    border-radius: 8px;
+    color: yellow;
+    box-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+}
+
+.badge-offline {
+    padding: 0 0.5em;
+    border-radius: 16px;
+    color: white;
+}
+.panel-serverOverview {
+    height: 6em;
+}
+
+.panel-serverOverview td {
+    text-align: center;
+}
+.currentMap {
+    padding: 0.25em;
+    background: #ddd;
+    border: 1px solid #ccc;
+}

@@ -25,7 +25,7 @@ namespace Model\Server;
 
 class Data {
 
-    /** @var bool[] */
+    /** @var bool */
     public $isConnected = false;
 
     /** @var \Maniaplanet\DedicatedServer\Structures\ServerOptions */
@@ -42,7 +42,10 @@ class Data {
 
     /** @var \Maniaplanet\DedicatedServer\Structures\Map; */
     public $currentMap;
-
+    
+    /** @var string */
+    public $name = "";
+    
     function __construct()
     {
         $this->server = \Maniaplanet\DedicatedServer\Structures\ServerOptions::fromArray(array());
