@@ -29,10 +29,14 @@ class ServerConnection extends \OWeb\types\extension
 
     public function getIdList()
     {
-
 	return array_keys($this->config->host);
     }
 
+    /**
+     * 
+     * @param int $serverId
+     * @return Data|Data[] 
+     */
     public function getData($serverId = null)
     {
 
@@ -40,11 +44,11 @@ class ServerConnection extends \OWeb\types\extension
 	    foreach ($this->config->host as $id => $ip) {
 		$this->servers[$id] = $this->ext_core_cache_Caching->createCacheElement('serverInfo.' . $id, array($this, 'getServerData'), array($id), $this->config->cacheTimeout);
 	    }
+	    return $this->servers;
 	} else {
 	    $this->servers[$serverId] = $this->ext_core_cache_Caching->createCacheElement('serverInfo.' . $serverId, array($this, 'getServerData'), array($serverId), $this->config->cacheTimeout);
+	    return $this->servers[$serverId];
 	}
-
-	return $this->servers[$serverId];
     }
 
     public function getServerData($id)

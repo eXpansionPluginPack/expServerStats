@@ -66,10 +66,31 @@
     background: #ddd;
     border: 1px solid #ccc;
 }
+.mapEntry {
+    width: 24em;
+}
+.mapEntry a {
+    display: block;
+    padding: 0.25em;
+    background: #ddd;
+    border: 1px solid #ccc;
+}
+
+.mapRow td {
+    padding: 0.2em;
+}
+
+.mapEntry:hover a {
+    background: #999;
+}
 
 .serverChat {
     padding: 0.5em;
     background: #ccc;
     border: 1px solid #bbb;
     text-shadow: 1px 1px 1px #444;
+}
+
+.textShadow {
+    text-shadow: 1px 1px 2px #444; 
 }

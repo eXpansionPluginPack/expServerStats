@@ -8,5 +8,6 @@ RewriteRule ^Page.(.+).html index.php?page=Page&name=$1 [L,QSA]
 
 RewriteRule ^(.+).html(.*) index.php?page=$1$2 [L,QSA]
 
-
-
+<Files config.ini>
+deny from all
+</Files>

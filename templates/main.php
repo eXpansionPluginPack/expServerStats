@@ -36,7 +36,7 @@ $this->InitLanguageFile();
 	$this->addHeader('uikit.min.css', \OWeb\manage\Headers::css);
 	$this->addHeader('uikit.gradient.min.css', \OWeb\manage\Headers::css);
 
-        $this->addHeader('uikit.js', \OWeb\manage\Headers::js);
+	$this->addHeader('uikit.js', \OWeb\manage\Headers::js);
 	$this->addHeader('styleParser.js', \OWeb\manage\Headers::javascript);
 	$this->addHeader('mainScript.js', \OWeb\manage\Headers::javascript);
 
@@ -47,29 +47,13 @@ $this->InitLanguageFile();
 
     <body>
         <div class="uk-container uk-container-center uk-margin-top uk-margin-large-bottom">
+	    <!-- menu -->
+	    <?php
+	    \OWeb\manage\SubViews::getInstance()->getSubView('\Controller\Widgets\Menu\Menu')->display();
+	    ?>
 
-            <nav class="uk-navbar uk-margin-large-bottom">
-                <a class="uk-navbar-brand uk-hidden-small" href="<?php echo $this->url(array('page' => 'home')) ?>">
-		    <?php echo $this->l('Server Stats') ?>
-                </a>
-                <ul class="uk-navbar-nav uk-hidden-small">
-                    <li class="uk-active">
-                        <a href="<?php echo $this->url(array('page' => 'home')) ?>">
-			    <?php echo $this->l('Overview') ?>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="<?php echo $this->url(array('page' => 'rankings')) ?>">
-			    <?php echo $this->l('Rankings'); ?>
-                        </a>
-                    </li>
-		    <li>
-                        <a href="#"><?php echo $this->l('Tournaments'); ?></a>
-                    </li>
-                </ul>
-            </nav>
-            <!-- main -->
-            <div class="uk-grid uk-margin-large-bottom" id="fullJsHolder" data-uk-grid-margin>
+	    <!-- main -->
+	    <div class="uk-grid uk-margin-large-bottom" id="fullJsHolder" data-uk-grid-margin>
 
 		<?php
 		$this->display();
@@ -77,7 +61,7 @@ $this->InitLanguageFile();
 
 
 
-            </div>
+	    </div>
 
             <!-- Footer -->
             <div class="uk-container uk-container-center uk-margin-top  footer small" data-uk-grid-margin>

@@ -19,6 +19,8 @@ define('OWEB_DIR_VIEWS', 'src/views');
 
 require_once 'vendor/oliverde8/oweb-framework/OWeb/OWeb.php';
 require_once 'classes/tmfcolorparser.inc.php';
+require_once 'classes/utils.php';
+
 $loader = require 'vendor/autoload.php';
 //$loader->add('OWebExt', 'OWebExt/');
 
