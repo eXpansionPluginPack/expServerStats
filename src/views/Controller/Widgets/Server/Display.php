@@ -43,6 +43,7 @@ if ($data->isConnected == 1) :?>
             </table>
         </div>
     </a>
+
     <?php
 else :
     ?>

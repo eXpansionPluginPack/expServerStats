@@ -28,12 +28,20 @@
             <ul class="uk-list uk-list-striped">
                 <li>
                     <a href="#">
+                        <i class="uk-icon-users"></i>
 			<?php echo $this->l('Player Rankings') ?>
                     </a>
                 </li>
                 <li>
                     <a href="#">
+                        <i class="uk-icon-database"></i>
 			<?php echo $this->l('Statistics') ?>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="uk-icon-wechat"></i>
+                        <?php echo $this->l('Live Chat') ?>
                     </a>
                 </li>
             </ul>
