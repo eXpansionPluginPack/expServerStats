@@ -28,12 +28,14 @@ $this->InitLanguageFile();
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
         <title><?php $this->l('eXpansion Statistics') ?></title>
 
+        <!-- Hight priority load manually -->
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 	<?php
 	$this->addHeader('main.css', \OWeb\manage\Headers::css);
 	$this->addHeader('uikit.min.css', \OWeb\manage\Headers::css);
 	$this->addHeader('uikit.gradient.min.css', \OWeb\manage\Headers::css);
 
-	$this->addHeader('http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js', \OWeb\manage\Headers::javascript);
         $this->addHeader('uikit.js', \OWeb\manage\Headers::js);
 	$this->addHeader('styleParser.js', \OWeb\manage\Headers::javascript);
 	$this->addHeader('mainScript.js', \OWeb\manage\Headers::javascript);
@@ -67,7 +69,7 @@ $this->InitLanguageFile();
                 </ul>
             </nav>
             <!-- main -->
-            <div class="uk-grid uk-margin-large-bottom" data-uk-grid-margin>
+            <div class="uk-grid uk-margin-large-bottom" id="fullJsHolder" data-uk-grid-margin>
 
 		<?php
 		$this->display();
