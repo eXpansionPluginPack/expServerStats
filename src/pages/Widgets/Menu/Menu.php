@@ -20,9 +20,9 @@
  *  along with this program.  If not, see {http://www.gnu.org/licenses/}.
  */
 
-namespace Page;
+namespace Page\Widgets\Menu;
 
 
-class home extends \Controller\Overview\home {
+class Menu extends \Controller\Widgets\Menu\Menu{
 
 } 

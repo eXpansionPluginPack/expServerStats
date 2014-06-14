@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author      Oliver de Cramer (oliverde8 at gmail.com)
  * @copyright    GNU GENERAL PUBLIC LICENSE
@@ -22,10 +23,10 @@
 
 namespace Model\eXpansion;
 
-
 use OWeb\types\DatabaseModel;
 
-class MapInfo extends  DatabaseModel{
+class MapInfo extends DatabaseModel
+{
 
     protected $id = 0;
     protected $uid = '';
@@ -46,8 +47,6 @@ class MapInfo extends  DatabaseModel{
     protected $addedby = '';
     protected $addtime = 0;
 
-
-
     /**
      * @var Records
      */
@@ -55,12 +54,13 @@ class MapInfo extends  DatabaseModel{
 
     function __construct($data, Records $recordsManager)
     {
-        parent::__construct($data, 'challenge_');
-        $this->recordsManager = $recordsManager;
+	parent::__construct($data, 'challenge_');
+	$this->recordsManager = $recordsManager;
     }
 
-    public function getRecords(){
-        return $this->recordsManager->getChallangeRecords($this->uid);
+    public function getRecords()
+    {
+	return $this->recordsManager->getChallangeRecords($this->uid);
     }
 
     /**
@@ -68,7 +68,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setAddedby($addedby)
     {
-        $this->addedby = $addedby;
+	$this->addedby = $addedby;
     }
 
     /**
@@ -76,7 +76,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getAddedby()
     {
-        return $this->addedby;
+	return $this->addedby;
     }
 
     /**
@@ -84,7 +84,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setAddtime($addtime)
     {
-        $this->addtime = $addtime;
+	$this->addtime = $addtime;
     }
 
     /**
@@ -92,7 +92,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getAddtime()
     {
-        return $this->addtime;
+	return $this->addtime;
     }
 
     /**
@@ -100,7 +100,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setAuthor($author)
     {
-        $this->author = $author;
+	$this->author = $author;
     }
 
     /**
@@ -108,7 +108,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getAuthor()
     {
-        return $this->author;
+	return $this->author;
     }
 
     /**
@@ -116,7 +116,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setAuthorTime($authorTime)
     {
-        $this->authorTime = $authorTime;
+	$this->authorTime = $authorTime;
     }
 
     /**
@@ -124,7 +124,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getAuthorTime()
     {
-        return $this->authorTime;
+	return $this->authorTime;
     }
 
     /**
@@ -132,7 +132,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setBronzeTime($bronzeTime)
     {
-        $this->bronzeTime = $bronzeTime;
+	$this->bronzeTime = $bronzeTime;
     }
 
     /**
@@ -140,7 +140,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getBronzeTime()
     {
-        return $this->bronzeTime;
+	return $this->bronzeTime;
     }
 
     /**
@@ -148,7 +148,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setCopperPrice($copperPrice)
     {
-        $this->copperPrice = $copperPrice;
+	$this->copperPrice = $copperPrice;
     }
 
     /**
@@ -156,7 +156,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getCopperPrice()
     {
-        return $this->copperPrice;
+	return $this->copperPrice;
     }
 
     /**
@@ -164,7 +164,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setEnvironment($environment)
     {
-        $this->environment = $environment;
+	$this->environment = $environment;
     }
 
     /**
@@ -172,7 +172,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getEnvironment()
     {
-        return $this->environment;
+	return $this->environment;
     }
 
     /**
@@ -180,7 +180,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setFile($file)
     {
-        $this->file = $file;
+	$this->file = $file;
     }
 
     /**
@@ -188,7 +188,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getFile()
     {
-        return $this->file;
+	return $this->file;
     }
 
     /**
@@ -196,7 +196,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setGoldTime($goldTime)
     {
-        $this->goldTime = $goldTime;
+	$this->goldTime = $goldTime;
     }
 
     /**
@@ -204,7 +204,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getGoldTime()
     {
-        return $this->goldTime;
+	return $this->goldTime;
     }
 
     /**
@@ -212,7 +212,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setId($id)
     {
-        $this->id = $id;
+	$this->id = $id;
     }
 
     /**
@@ -220,7 +220,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getId()
     {
-        return $this->id;
+	return $this->id;
     }
 
     /**
@@ -228,7 +228,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setKey($key)
     {
-        $this->key = $key;
+	$this->key = $key;
     }
 
     /**
@@ -236,7 +236,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getKey()
     {
-        return $this->key;
+	return $this->key;
     }
 
     /**
@@ -244,7 +244,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setLapRace($lapRace)
     {
-        $this->lapRace = $lapRace;
+	$this->lapRace = $lapRace;
     }
 
     /**
@@ -252,7 +252,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getLapRace()
     {
-        return $this->lapRace;
+	return $this->lapRace;
     }
 
     /**
@@ -260,7 +260,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setMood($mood)
     {
-        $this->mood = $mood;
+	$this->mood = $mood;
     }
 
     /**
@@ -268,7 +268,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getMood()
     {
-        return $this->mood;
+	return $this->mood;
     }
 
     /**
@@ -276,7 +276,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setName($name)
     {
-        $this->name = $name;
+	$this->name = $name;
     }
 
     /**
@@ -284,7 +284,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getName()
     {
-        return $this->name;
+	return $this->name;
     }
 
     /**
@@ -292,7 +292,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setNameStripped($nameStripped)
     {
-        $this->nameStripped = $nameStripped;
+	$this->nameStripped = $nameStripped;
     }
 
     /**
@@ -300,7 +300,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getNameStripped()
     {
-        return $this->nameStripped;
+	return $this->nameStripped;
     }
 
     /**
@@ -308,7 +308,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setNbCheckpoints($nbCheckpoints)
     {
-        $this->nbCheckpoints = $nbCheckpoints;
+	$this->nbCheckpoints = $nbCheckpoints;
     }
 
     /**
@@ -316,7 +316,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getNbCheckpoints()
     {
-        return $this->nbCheckpoints;
+	return $this->nbCheckpoints;
     }
 
     /**
@@ -324,7 +324,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setNbLaps($nbLaps)
     {
-        $this->nbLaps = $nbLaps;
+	$this->nbLaps = $nbLaps;
     }
 
     /**
@@ -332,7 +332,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getNbLaps()
     {
-        return $this->nbLaps;
+	return $this->nbLaps;
     }
 
     /**
@@ -340,7 +340,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setRecordsManager($recordsManager)
     {
-        $this->recordsManager = $recordsManager;
+	$this->recordsManager = $recordsManager;
     }
 
     /**
@@ -348,7 +348,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getRecordsManager()
     {
-        return $this->recordsManager;
+	return $this->recordsManager;
     }
 
     /**
@@ -356,7 +356,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setSilverTime($silverTime)
     {
-        $this->silverTime = $silverTime;
+	$this->silverTime = $silverTime;
     }
 
     /**
@@ -364,7 +364,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getSilverTime()
     {
-        return $this->silverTime;
+	return $this->silverTime;
     }
 
     /**
@@ -372,7 +372,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function setUid($uid)
     {
-        $this->uid = $uid;
+	$this->uid = $uid;
     }
 
     /**
@@ -380,9 +380,7 @@ class MapInfo extends  DatabaseModel{
      */
     public function getUid()
     {
-        return $this->uid;
+	return $this->uid;
     }
 
-
-
-} 
+}

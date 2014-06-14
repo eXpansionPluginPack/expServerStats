@@ -1,10 +1,8 @@
 <?php
-
 /**
  * @var Model\Server\Data $data
  */
 $data = $this->data;
-
 ?>
 <h3><?php echo $this->l('Maps') ?> </h3>
 <table class="uk-table uk-table-striped">
@@ -18,49 +16,44 @@ $data = $this->data;
         </th>
         <th>
             <i class="uk-icon-cubes"></i>
-            Environnement
+            Environment
         </th>
         <th>
             <i class="uk-icon-trophy"></i>
-            Author Time
-        </th>
-        <th>
-            <i class="uk-icon-star"></i>
-            Best Time
+            Gold Time
         </th>
     </tr>
 
     <?php if (!empty($data->maps)) : ?>
 
-        <?php
-        /** @var \Extension\core\url\Link $mapLink */
-        $mapLink = $this->url(array('page'=>'Overview\Map'));
-        ?>
+	<?php
+	/** @var \Extension\core\url\Link $mapLink */
+	$mapLink = $this->url(array('page' => 'Overview\Map'));
+	?>
 
-        <?php foreach ($data->maps as $map) : ?>
-            <?php $mapLink->addParam('uid', $map->uId); ?>
-            <tr>
-                <td>
-                    <a href = "<?php echo $mapLink; ?>">
-                        <?php echo $this->parseColors($map->name); ?>
-                    </a>
-                </td>
-                <td>
-                    <?php echo $this->parseColors($map->author); ?>
-                </td>
-                <td>
-                    <?php echo $map->environnement; ?>
-                </td>
-                <td>
-                    <?php echo $map->authorTime; ?>
-                </td>
-                <td>
-                    <?php echo $this->l('TODO') ?>
-                </td>
-            </tr>
+	<?php foreach ($data->maps as $map) : ?>
+	    <?php $mapLink->addParam('uid', $map->uId); ?>
 
-        <?php endforeach; ?>
+	    <tr class="mapRow">
+		<td class="textShadow mapEntry">
+		    <abbr title="<?php echo $this->l("Click to see more statistics about the map!"); ?>">
+			<a href="<?php echo $mapLink; ?>">
+			    <?php echo $this->parseColors($map->name); ?>
+			</a></abbr>
+		</td>
+		<td>
+		    <?php echo $this->parseColors($map->author); ?>
+		</td>
+		<td>
+		    <?php echo $map->environnement; ?>
+		</td>
+		<td>
+		    <?php echo Time::fromTM($map->goldTime); ?>
+		</td>
+	    </tr>
+	</a>
+    <?php endforeach; ?>
 
-    <?php endif ?>
+<?php endif ?>
 
 </table>

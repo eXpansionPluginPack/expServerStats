@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @var \Model\eXpansion\MapInfo $map
  */
@@ -13,7 +12,6 @@ $headers = \OWeb\manage\Headers::getInstance();
 $headers->addJs('highcharts/highcharts.js');
 
 $headers->addJs('highcharts/highcharts-more.js');
-
 ?>
 
 <div class="uk-width-1-1">
@@ -39,7 +37,7 @@ $headers->addJs('highcharts/highcharts-more.js');
                 </dl>
                 <dl class="uk-description-list uk-description-list-horizontal">
                     <dt>Added On</dt>
-                    <dd><?php echo $map->getAddtime() ?></dd>
+                    <dd><?php echo date("Y-m-d", $map->getAddtime()); ?></dd>
                 </dl>
             </div>
         </div>
@@ -75,70 +73,79 @@ $headers->addJs('highcharts/highcharts-more.js');
             </th>
         </tr>
 
-        <?php if (empty($records)) : ?>
-            <tr>
-                <td colspan="5">No records on this map</td>
-            </tr>
+	<?php if (empty($records)) : ?>
+    	<tr>
+    	    <td colspan="5">No records on this map</td>
+    	</tr>
 
-        <?php else : ?>
-            <?php foreach ($records as $record) : ?>
-                <tr>
-                    <td>
-                        <?php echo $record->place; ?>
-                    </td>
-                    <td>
-                        <?php echo $this->parseColors($record->nickName); ?>
-                    </td>
-                    <td>
-                        <?php echo $record->login; ?>
-                    </td>
-                    <td>
-                        <?php echo $record->avgScore; ?>
-                    </td>
-                    <td>
-                        <?php echo $record->nbFinish; ?>
-                    </td>
-                    <td>
-                        <?php echo $record->time; ?>
-                    </td>
-                </tr>
-            <?php endforeach ?>
-        <?php endif ?>
+	<?php else : ?>
+	    <?php foreach ($records as $record) : ?>
+		<tr>
+		    <td>
+			<?php echo $record->place; ?>
+		    </td>
+		    <td>
+			<?php echo $this->parseColors($record->nickName); ?>
+		    </td>
+		    <td>
+			<?php echo $record->login; ?>
+		    </td>
+		    <td>
+			<?php echo Time::fromTM($record->avgScore); ?>
+		    </td>
+		    <td>
+			<?php echo $record->nbFinish; ?>
+		    </td>
+		    <td>
+			<?php echo Time::fromTM($record->time); ?>
+		    </td>
+		</tr>
+	    <?php endforeach ?>
+	<?php endif ?>
 
     </table>
 </div>
-
-<?php if (!empty($records)) : ?>
+<?php
+if (!empty($records)) :
+    ?>
 
     <div class="uk-width-1-1">
         <div id="map-top5CpGraph"></div>
     </div>
 
     <?php
-    $i      = 0;
+    $i = 0;
     $series = array();
     foreach ($records as $record) {
 
-        if ($i > 4)
-            break;
+	if ($i > 4)
+	    break;
 
-        $cps = array();
-        $prev = 0;
-        foreach($record->ScoreCheckpoints as $cp){
-            $cps[] = $cp - $prev;
-            $prev = $cp;
-        }
+	$cps = array();
+	$prev = 0;
+	$cpLabels = array();
+	foreach ($record->ScoreCheckpoints as $index => $cp) {
+	    $cps[] = ($cp - $prev) / 1000;
+	    $prev = $cp;
+	    $cpLabels[] = "Cp " . ($index + 1);
+	}
 
-        $data = array();
-        $data['name'] = $record->login;
-        $data['data'] = $cps;
-        $series[] = $data;
-        $i++;
+	$cpLabels[(count($cpLabels) - 1)] = "Finish";
+
+
+
+	$data = array();
+	$data['name'] = $record->login;
+	$data['data'] = $cps;
+	$series[] = $data;
+	$i++;
     }
 
     $data = array();
-    $data['title'] = array('text' => "Best 5 CheckPoint Times");
-    $data['yAxis'] = array('title' => array('text' => "Cp TImes"));
+    $data['title'] = array('text' => "Best 5 Times by Checkpoint");
+    $data['yAxis'] = array('title' => array('text' => "Seconds"), "min" => 0);
+    $data['xAxis'] = array('title' => array('text' => "Checkpoint"), "allowDecimals" => false, "type" => "category", "categories" => $cpLabels);
+    $data['tooltip'] = array('valueSuffix' => 's', 'valueDecimals' => 3);
     $data['series'] = $series;
 
     /**
@@ -146,8 +153,7 @@ $headers->addJs('highcharts/highcharts-more.js');
      */
     $onReady = \OWeb\utils\js\jquery\HeaderOnReadyManager::getInstance();
 
-    $onReady->add("$('#map-top5CpGraph').highcharts(".json_encode($data).")");
-
+    $onReady->add("$('#map-top5CpGraph').highcharts(" . json_encode($data) . ")");
     ?>
 
 <?php endif ?>
