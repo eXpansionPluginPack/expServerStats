@@ -44,4 +44,14 @@ class ColorParser extends Extension
 	return $this->parser->toHTML($string);
     }
 
+    public function getParser()
+    {
+	return $this->parser;
+    }
+
+    public function stripStyles($string)
+    {
+	return $this->parser->toHTML($string, true, true);
+    }
+
 }

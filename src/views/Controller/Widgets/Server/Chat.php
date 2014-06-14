@@ -1,59 +1,14 @@
 <?php
-
 /**
- * @var Model\Server\Data $data
+ * @var Model\Server\Chat $data
  */
-$data = $this->data;
-
+$data = $this->chat;
 ?>
-<h3><?php echo $this->l('Maps') ?> </h3>
-<table class="uk-table uk-table-striped">
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            <i class="uk-icon-user"></i>
-            Author
-        </th>
-        <th>
-            <i class="uk-icon-cubes"></i>
-            Environnement
-        </th>
-        <th>
-            <i class="uk-icon-trophy"></i>
-            Author Time
-        </th>
-        <th>
-            <i class="uk-icon-star"></i>
-            Best Time
-        </th>
-    </tr>
+<h3><?php echo $this->l('Chat') ?> </h3>
+<div class="serverChat">
+    <?php foreach ($data as $line) : ?>
 
-    <?php if (!empty($data->maps)) : ?>
+	<?php echo $this->parseColors($line); ?> <br>
 
-        <?php foreach ($data->maps as $map) : ?>
-
-            <tr>
-                <td>
-                    <?php echo $this->parseColors($map->name); ?>
-                </td>
-                <td>
-                    <?php echo $this->parseColors($map->author); ?>
-                </td>
-                <td>
-                    <?php echo $map->environnement; ?>
-                </td>
-                <td>
-                    <?php echo $map->authorTime; ?>
-                </td>
-                <td>
-                    <?php echo $this->l('TODO') ?>
-                </td>
-            </tr>
-
-        <?php endforeach; ?>
-
-    <?php endif ?>
-
-</table>
+    <?php endforeach; ?>
+</div>

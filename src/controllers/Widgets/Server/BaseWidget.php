@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author      Oliver de Cramer (oliverde8 at gmail.com)
  * @copyright    GNU GENERAL PUBLIC LICENSE
@@ -22,31 +23,37 @@
 
 namespace Controller\Widgets\Server;
 
-
 use OWeb\types\Controller;
 
-class BaseWidget extends Controller{
+class BaseWidget extends Controller
+{
 
     /**
      * @var ServerConnection
      */
     protected $dedi_ext;
 
+    /** @var Extension\Maniaplanet\ColorParser */
+    protected $colorParser;
+
     public function init()
     {
-        $this->addDependance('Maniaplanet\ServerConnection');
-        $this->addDependance('Maniaplanet\ColorParser');
-        $this->dedi_ext = \OWeb\manage\Extensions::getInstance()->getExtension('Maniaplanet\ServerConnection');
+	$this->addDependance('Maniaplanet\ServerConnection');
+	$this->addDependance('Maniaplanet\ColorParser');
+	$this->dedi_ext = \OWeb\manage\Extensions::getInstance()->getExtension('Maniaplanet\ServerConnection');
+	$this->colorParser = \OWeb\manage\Extensions::getInstance()->getExtension('Maniaplanet\ColorParser');
     }
 
-    public function setServerId($id){
-        $this->addParams('id', $id);
+    public function setServerId($id)
+    {
+	$this->addParams('id', $id);
     }
 
     public function onDisplay()
     {
-        $this->view->id = $this->getParam('id');
-        $this->view->data = $this->dedi_ext->getData($this->view->id);
-        $this->view->class = $this->getParam('class');
+	$this->view->id = $this->getParam('id');
+	$this->view->data = $this->dedi_ext->getData($this->view->id);
+	$this->view->class = $this->getParam('class');
     }
-} 
+
+}

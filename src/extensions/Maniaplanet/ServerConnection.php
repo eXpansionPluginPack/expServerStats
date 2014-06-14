@@ -50,13 +50,19 @@ class ServerConnection extends \OWeb\types\extension
     public function getServerData($id)
     {
 
-
-
 	if (isset($this->config->host[$id]) && isset($this->config->port[$id]) && isset($this->config->user[$id]) && isset($this->config->password[$id])) {
-	    $this->getConnection($id, $this->config->host[$id], $this->config->port[$id], $this->config->user[$id], $this->config->password[$id]);
+	    $this->connect($id, $this->config->host[$id], $this->config->port[$id], $this->config->user[$id], $this->config->password[$id]);
 	}
 
 	return $this->servers[$id];
+    }
+
+    public function getConnection($id)
+    {
+	if (is_object($this->connections[$id])) {
+	    return $this->connections[$id];
+	}
+	return null;
     }
 
     /**
@@ -68,7 +74,7 @@ class ServerConnection extends \OWeb\types\extension
      * @param string $user
      * @param string $password
      */
-    public function getConnection($id, $host, $port, $user, $password)
+    private function connect($id, $host, $port, $user, $password)
     {
 
 	if (!is_object($this->connection)) {
@@ -76,11 +82,12 @@ class ServerConnection extends \OWeb\types\extension
 		$this->connections[$id] = \Maniaplanet\DedicatedServer\Connection::factory($host, $port, 1, $user, $password);
 		$this->syncData($id, $this->connections[$id]);
 		$this->servers[$id]->isConnected = true;
+		$this->servers[$id]->name = $this->config->name[$id];
 	    } catch (\Exception $ex) {
+		$this->connections[$id] = null;
 		$this->servers[$id] = new Data();
 		$this->servers[$id]->isConnected = false;
 		$this->servers[$id]->name = $this->config->name[$id];
-		$this->isConnected[$id] = false;
 	    }
 	}
     }
@@ -124,7 +131,6 @@ class ServerConnection extends \OWeb\types\extension
 
     public function getTimeOut()
     {
-
 	return $this->config->cacheTimeout;
     }
 

@@ -66,3 +66,10 @@
     background: #ddd;
     border: 1px solid #ccc;
 }
+
+.serverChat {
+    padding: 0.5em;
+    background: #ccc;
+    border: 1px solid #bbb;
+    text-shadow: 1px 1px 1px #444;
+}

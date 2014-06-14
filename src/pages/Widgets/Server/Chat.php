@@ -23,6 +23,6 @@
 namespace Page\Widgets\Server;
 
 
-class Players extends \Controller\Widgets\Server\Players{
+class Chat extends \Controller\Widgets\Server\Chat {
 
 } 

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @author      Oliver de Cramer (oliverde8 at gmail.com)
  * @copyright    GNU GENERAL PUBLIC LICENSE
@@ -22,18 +23,60 @@
 
 namespace Controller\Widgets\Server;
 
-
-class Players extends BaseWidget{
-
-    const type_spec = 1;
-    const type_player = 2;
+class Chat extends BaseWidget
+{
 
     public function onDisplay()
     {
-        $type = $this->getParam('type');
-        if($type == null)
-            $type = self::type_player;
-        $this->view->type = $type;
-        parent::onDisplay();
+	parent::onDisplay();
+	$connection = $this->dedi_ext->getConnection($this->view->id);
+	$this->view->chat = $this->processChat($connection->getChatLines());
     }
-} 
+
+    private function processChat($array)
+    {
+
+	$out = array();
+	$lastLine = "";
+	foreach ($array as $line) {
+
+
+	    $matches = array();
+	    preg_match('/\$\<(.*)\$\>(.*)/', $line, $matches);
+
+	    if (count($matches) == 3) {
+		$nick = $matches[1];
+		$text = $matches[2];
+
+		$nick = str_replace('$<', "", $nick);
+		$nick = str_replace('$>', "", $nick);
+
+		$text = str_replace('$<', "", $text);
+		$text = str_replace('$>', "", $text);
+		if (substr($text, 0, 1) == "]") {
+		    $text = substr($text, 1);
+		}
+
+		$text = trim($text);
+		$rawText = trim($this->colorParser->stripStyles($text));
+
+		if (substr($text, 0, 1) == "/") {
+		    continue;
+		}
+		
+		if (strcmp($rawText, $lastLine) === -1) {
+		    $lastLine = $rawText;
+		    $out[] = '$ff0' . $nick . '$z$ff0 ' . $text;
+		} else {
+		    $lastLine = $rawText;
+		}
+	    } else {
+		$lastLine = $line;
+		$out[] = '$fff' . $line;
+	    }
+	}
+
+	return $out;
+    }
+
+}

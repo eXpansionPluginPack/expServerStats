@@ -28,26 +28,29 @@
             <ul class="uk-list uk-list-striped">
                 <li>
                     <a href="#">
-                        <?php echo $this->l('Player Rankings') ?>
+			<?php echo $this->l('Player Rankings') ?>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <?php echo $this->l('Statistics') ?>
+			<?php echo $this->l('Statistics') ?>
                     </a>
                 </li>
             </ul>
         </div>
 
-        <?php $this->loadWithAjax('Widgets\Server\Display&id='.$this->id, $this->timeout,  'uk-width-7-10" data-uk-grid-margin '); ?>
+	<?php $this->loadWithAjax('Widgets\Server\Display&id=' . $this->id, $this->timeout, 'uk-width-7-10" data-uk-grid-margin '); ?>
+    </div>
+    <div class="uk-grid" data-uk-grid-margin data-uk-grid-match>
+	<?php $this->loadWithAjax('Widgets\Server\Chat&id=' . $this->id, 10, 'uk-width-1-1'); ?>
     </div>
 
     <div class="uk-grid" data-uk-grid-margin data-uk-grid-match>
-        <?php $this->loadWithAjax('Widgets\Server\Players&id='.$this->id.'&type='.\Controller\Widgets\Server\Players::type_player, $this->timeout,  'uk-width-1-2'); ?>
-        <?php $this->loadWithAjax('Widgets\Server\Players&id='.$this->id.'&type='.\Controller\Widgets\Server\Players::type_spec, $this->timeout,  'uk-width-1-2'); ?>
+	<?php $this->loadWithAjax('Widgets\Server\Players&id=' . $this->id . '&type=' . \Controller\Widgets\Server\Players::type_player, $this->timeout, 'uk-width-1-2'); ?>
+	<?php $this->loadWithAjax('Widgets\Server\Players&id=' . $this->id . '&type=' . \Controller\Widgets\Server\Players::type_spec, $this->timeout, 'uk-width-1-2'); ?>
     </div>
 
     <div class="uk-grid" data-uk-grid-margin data-uk-grid-match>
-        <?php $this->loadWithAjax('Widgets\Server\Maps&id='.$this->id, $this->timeout,  'uk-width-1-1'); ?>
+	<?php $this->loadWithAjax('Widgets\Server\Maps&id=' . $this->id, $this->timeout, 'uk-width-1-1'); ?>
     </div>
 </div>
