@@ -8,7 +8,7 @@ if ($data->isConnected == 1) {
 
 
 <a href="#test" id="overview-server-<?php echo $this->id; ?>">
-    <div class="uk-panel uk-panel-box panel-serverOverview">    
+    <div class="uk-panel uk-panel-box panel-serverOverview">
 	<div class="uk-panel-title  serverName ">
 	    <?php echo $this->parseColors($data->server->name) ?>
 	</div>

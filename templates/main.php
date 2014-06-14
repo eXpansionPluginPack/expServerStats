@@ -33,7 +33,8 @@ $this->InitLanguageFile();
 	$this->addHeader('uikit.min.css', \OWeb\manage\Headers::css);
 	$this->addHeader('uikit.gradient.min.css', \OWeb\manage\Headers::css);
 
-	$this->addHeader('http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js', \OWeb\manage\Headers::javascript);
+	$this->addHeader('http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js', \OWeb\manage\Headers::javascript);
+        $this->addHeader('uikit.js', \OWeb\manage\Headers::js);
 	$this->addHeader('styleParser.js', \OWeb\manage\Headers::javascript);
 	$this->addHeader('mainScript.js', \OWeb\manage\Headers::javascript);
 
