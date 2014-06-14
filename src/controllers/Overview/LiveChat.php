@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @author      Oliver de Cramer (oliverde8 at gmail.com)
  * @copyright    GNU GENERAL PUBLIC LICENSE
@@ -21,39 +20,21 @@
  *  along with this program.  If not, see {http://www.gnu.org/licenses/}.
  */
 
-namespace Controller\Widgets\Server;
+namespace Controller\Overview;
+
 
 use OWeb\types\Controller;
 
-class BaseWidget extends Controller
-{
-
-    /**
-     * @var ServerConnection
-     */
-    protected $dedi_ext;
-
-    /** @var \Extension\Maniaplanet\ColorParser */
-    protected $colorParser;
+class LiveChat  extends Controller{
 
     public function init()
     {
-	$this->addDependance('Maniaplanet\ServerConnection');
-	$this->addDependance('Maniaplanet\ColorParser');
-	$this->dedi_ext = \OWeb\manage\Extensions::getInstance()->getExtension('Maniaplanet\ServerConnection');
-	$this->colorParser = \OWeb\manage\Extensions::getInstance()->getExtension('Maniaplanet\ColorParser');
-    }
-
-    public function setServerId($id)
-    {
-	$this->addParams('id', $id);
+        $this->addDependance('contentDisplay\ajaxContentLoader');
+        $this->addDependance('Maniaplanet\ColorParser');
     }
 
     public function onDisplay()
     {
-	$this->view->id = $this->getParam('id');
-	$this->view->data = $this->dedi_ext->getData($this->view->id);
-	$this->view->class = $this->getParam('class');
+        $this->view->id = $this->getParam('id');
     }
-
-}
+} 

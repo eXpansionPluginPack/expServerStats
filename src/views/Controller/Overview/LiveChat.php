@@ -1,6 +1,6 @@
 <?php
 /**
- * @author       Oliver de Cramer (oliverde8 at gmail.com)
+ * @author      Oliver de Cramer (oliverde8 at gmail.com)
  * @copyright    GNU GENERAL PUBLIC LICENSE
  *                     Version 3, 29 June 2007
  *
@@ -20,8 +20,9 @@
  *  along with this program.  If not, see {http://www.gnu.org/licenses/}.
  */
 ?>
+
 <div class="uk-width-1-1">
-    <h2><?php echo $this->l('Server Overview') ?> </h2>
+    <h2><?php echo $this->l('Server Chat') ?></h2>
 
     <div class="uk-grid" data-uk-grid-margin data-uk-grid-match>
         <?php
@@ -31,13 +32,7 @@
         ?>
     </div>
 
-
     <div class="uk-grid" data-uk-grid-margin data-uk-grid-match>
-	<?php $this->loadWithAjax('Widgets\Server\Players&id=' . $this->id . '&type=' . \Controller\Widgets\Server\Players::type_player, $this->timeout, 'uk-width-1-2'); ?>
-	<?php $this->loadWithAjax('Widgets\Server\Players&id=' . $this->id . '&type=' . \Controller\Widgets\Server\Players::type_spec, $this->timeout, 'uk-width-1-2'); ?>
-    </div>
-
-    <div class="uk-grid" data-uk-grid-margin data-uk-grid-match>
-	<?php $this->loadWithAjax('Widgets\Server\Maps&id=' . $this->id, $this->timeout, 'uk-width-1-1'); ?>
+        <?php $this->loadWithAjax('Widgets\Server\Chat&id=' . $this->id, 10, 'uk-width-1-1'); ?>
     </div>
 </div>
