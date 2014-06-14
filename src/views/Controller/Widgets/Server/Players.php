@@ -14,6 +14,11 @@ endif;
 ?>
 
 <h3>
+    <?php if ($this->type == \Controller\Widgets\Server\Players::type_player) : ?>
+        <i class="uk-icon-user"></i>
+    <?php else : ?>
+        <i class="uk-icon-eye"></i>
+    <?php endif; ?>
     <?php echo $type; ?>
 </h3>
 <table class="uk-table uk-table-striped">

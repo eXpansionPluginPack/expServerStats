@@ -32,11 +32,18 @@ $data = $this->data;
 
     <?php if (!empty($data->maps)) : ?>
 
-        <?php foreach ($data->maps as $map) : ?>
+        <?php
+        /** @var \Extension\core\url\Link $mapLink */
+        $mapLink = $this->url(array('page'=>'Overview\Map'));
+        ?>
 
+        <?php foreach ($data->maps as $map) : ?>
+            <?php $mapLink->addParam('uid', $map->uId); ?>
             <tr>
                 <td>
-                    <?php echo $this->parseColors($map->name); ?>
+                    <a href = "<?php echo $mapLink; ?>">
+                        <?php echo $this->parseColors($map->name); ?>
+                    </a>
                 </td>
                 <td>
                     <?php echo $this->parseColors($map->author); ?>
