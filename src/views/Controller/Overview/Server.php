@@ -19,6 +19,14 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see {http://www.gnu.org/licenses/}.
  */
+
+/**
+ * @var \OWeb\manage\Headers $headers
+ */
+$headers = \OWeb\manage\Headers::getInstance();
+$headers->addJs('highcharts/highcharts.js');
+
+$headers->addJs('highcharts/highcharts-more.js');
 ?>
 <div class="uk-width-1-1">
     <h2><?php echo $this->l('Server Overview') ?> </h2>
