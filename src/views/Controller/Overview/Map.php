@@ -71,6 +71,9 @@ $headers->addJs('highcharts/highcharts-more.js');
             <th>
                 Record
             </th>
+            <th>
+                Display In Graph
+            </th>
         </tr>
 
 	<?php if (empty($records)) : ?>
@@ -99,6 +102,19 @@ $headers->addJs('highcharts/highcharts-more.js');
 		    <td>
 			<?php echo Time::fromTM($record->time); ?>
 		    </td>
+                    <td>
+                        <input type="checkbox"
+                                <?php echo $record->place <= 5 ? "checked" : ""; ?>
+                               class="cp-show"
+                               data-cp-login="<?php echo $record->login ?>">
+                        </input>
+                        <span class="cp-active uk-alert-success" style="<?php echo $record->place > 5 ? "display:none" : ""; ?>">
+                            Active
+                        </span>
+                        <span class="cp-nopactive uk-alert-danger" style="<?php echo $record->place <= 5 ? "display:none" : ""; ?>">
+                            Not Active
+                        </span>
+                    </td>
 		</tr>
 	    <?php endforeach ?>
 	<?php endif ?>
@@ -116,10 +132,8 @@ if (!empty($records)) :
     <?php
     $i = 0;
     $series = array();
+    $seriesAll = array();
     foreach ($records as $record) {
-
-	if ($i > 4)
-	    break;
 
 	$cps = array();
 	$prev = 0;
@@ -132,12 +146,12 @@ if (!empty($records)) :
 
 	$cpLabels[(count($cpLabels) - 1)] = "Finish";
 
-
-
 	$data = array();
 	$data['name'] = $record->login;
 	$data['data'] = $cps;
-	$series[] = $data;
+        if ($i < 5)
+	    $series[] = $data;
+        $seriesAll[$record->login] = $data;
 	$i++;
     }
 
@@ -153,8 +167,43 @@ if (!empty($records)) :
      */
     $onReady = \OWeb\utils\js\jquery\HeaderOnReadyManager::getInstance();
 
-    $onReady->add("$('#map-top5CpGraph').highcharts(" . json_encode($data) . ")");
+    $onReady->add("
+        var CpGraphdata = " . json_encode($data) . ";
+        var CpGraphSeries = " . json_encode($seriesAll) . ";
+        $('#map-top5CpGraph').highcharts(CpGraphdata)
+
+        $('.cp-show').click(function(){
+            var that = $(this);
+            if(that.prop('checked')){
+                that.parent().children('.cp-active').show();
+                that.parent().children('.cp-nopactive').hide();
+            }else{
+                that.parent().children('.cp-active').hide();
+                that.parent().children('.cp-nopactive').show();
+            }
+            refreshGraph();
+        });
+
+        function refreshGraph(){
+            var series = [];
+
+            $('.cp-show').each(function(){
+                var that = $(this);
+                if(that.prop('checked')){
+                     series[series.length] = CpGraphSeries[$(this).data('cp-login')];
+                }
+            });
+
+            console.log(CpGraphdata['series'])
+            CpGraphdata['series'] = eval(series);
+            console.log(CpGraphdata['series'])
+            $('#map-top5CpGraph').highcharts(CpGraphdata)
+        }
+    ");
     ?>
 
+    <script>
+
+    </script>
 <?php endif ?>
 

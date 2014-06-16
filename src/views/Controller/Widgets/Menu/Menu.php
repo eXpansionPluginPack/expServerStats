@@ -33,4 +33,19 @@ $data = $this->data;
 	    <a href="#"><?php echo $this->l('Tournaments'); ?></a>
 	</li>
     </ul>
+    <div class="uk-navbar-flip">
+        <ul class="uk-navbar-nav">
+            <li>
+                <a href="">Language</a>
+                <ul>
+                    <li>
+                        en
+                    </li>
+                    <li>
+                        Fr
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
 </nav>
