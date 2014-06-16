@@ -35,16 +35,18 @@ $data = $this->data;
     </ul>
     <div class="uk-navbar-flip">
         <ul class="uk-navbar-nav">
-            <li>
-                <a href="">Language</a>
-                <ul>
-                    <li>
-                        en
-                    </li>
-                    <li>
-                        Fr
-                    </li>
-                </ul>
+            <li class="uk-navbar-parent"  data-uk-dropdown>
+                <a href="#"> <?php echo $this->l('Languages'); ?> <i class="uk-icon-caret-down"></i></a>
+                <div class="uk-dropdown uk-dropdown-navbar">
+                    <ul  class="uk-nav uk-nav-navbar">
+                        <li>
+                            <a>en</a>
+                        </li>
+                        <li>
+                            <a>Fr</a>
+                        </li>
+                    </ul>
+                </div>
             </li>
         </ul>
     </div>
